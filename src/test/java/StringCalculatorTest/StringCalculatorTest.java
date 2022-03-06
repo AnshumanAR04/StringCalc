@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringCalculatorTest {
     @Test
-    public void returnZeroOnEmptuCalls() {
+    public void returnZeroOnEmptyCalls() {
 
-        int ans = StringCalculator.add("");
-        assertEquals(0, ans);
+        int sum = StringCalculator.addEmbeddedNumbers("");
+        assertEquals(0, sum);
     }
 }
