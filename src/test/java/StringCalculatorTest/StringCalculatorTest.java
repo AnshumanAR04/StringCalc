@@ -17,9 +17,16 @@ public class StringCalculatorTest {
         int sum = StringCalculator.addEmbeddedNumbers("5");
         assertEquals(5, sum);
     }
+    @Test
     public void returnNumberForMultipleDigitNumber() {
         // Test 3: for string having 1 multiple digit number the addEmbeddedNumbers method should return the number
         int sum = StringCalculator.addEmbeddedNumbers("15");
         assertEquals(15, sum);
+    }
+    @Test
+    public void returnSumForMultipleNumbers() {
+        // Test 4: for string having multiple numbers the addEmbeddedNumbers method should return the sum
+        int sum = StringCalculator.addEmbeddedNumbers("15,5");
+        assertEquals(20, sum);
     }
 }
