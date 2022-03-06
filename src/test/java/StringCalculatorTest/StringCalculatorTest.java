@@ -12,9 +12,14 @@ public class StringCalculatorTest {
         assertEquals(0, sum);
     }
     @Test
-    public void returnNumberForSingleNumber() {
-        // Test 2: for string having 1 number the addEmbeddedNumbers method should return the number
+    public void returnNumberForSingleDigitNumber() {
+        // Test 2: for string having 1 single digit number the addEmbeddedNumbers method should return the number
         int sum = StringCalculator.addEmbeddedNumbers("5");
         assertEquals(5, sum);
+    }
+    public void returnNumberForMultipleDigitNumber() {
+        // Test 2: for string having 1 multiple digit number the addEmbeddedNumbers method should return the number
+        int sum = StringCalculator.addEmbeddedNumbers("15");
+        assertEquals(15, sum);
     }
 }
