@@ -3,6 +3,7 @@ package StringCalculator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class StringParser {
     // private instance to enable singleton behaviour for the class
@@ -15,8 +16,9 @@ public class StringParser {
     }
     // extracts and returns list of numbers based on the delimeter
     public List<String> getListOfNumbers(String numberString, String delimeter) {
+        Pattern pattern = Pattern.compile("[,\n]");
         List<String> numberList = new ArrayList<String>();
-        String [] numbers = numberString.split(",");
+        String [] numbers = numberString.split(String.valueOf(pattern));
         numberList = Arrays.asList(numbers);
         return numberList;
     }
