@@ -26,7 +26,13 @@ public class StringCalculatorTest {
     @Test
     public void returnSumForMultipleNumbers() {
         // Test 4: for string having multiple numbers the addEmbeddedNumbers method should return the sum
-        int sum = StringCalculator.addEmbeddedNumbers("15,5");
-        assertEquals(20, sum);
+        int sum = StringCalculator.addEmbeddedNumbers("15,5,67,88");
+        assertEquals(175, sum);
+    }
+    @Test
+    public void returnSumForMultipleNumbersWithNewLine() {
+        // Test 5: for string having multiple numbers with new line "\n" the addEmbeddedNumbers method should return the sum
+        int sum = StringCalculator.addEmbeddedNumbers("15,5\n67,88");
+        assertEquals(175, sum);
     }
 }
