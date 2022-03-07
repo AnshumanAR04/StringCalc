@@ -1,20 +1,24 @@
 package StringCalculator;
 
-public class StringCalculator {
-    public static int addEmbeddedNumbers(String numberList) {
-        int sum = 0;
-        if( numberList.length() == 0)
-            sum = 0;
-        else if (numberList.length() == 1 ) {
-            sum = Integer.parseInt(String.valueOf(numberList.charAt(0)));
-        }
-        else if ( numberList.length() > 1 )
-            for( char currentChar: numberList.toCharArray() )
-            {
-                 int currentDigit = Integer.parseInt(String.valueOf(currentChar));
-                 sum = sum + ( currentDigit  * 10);
+import java.util.List;
 
-            }
+public class StringCalculator {
+    public static int addNumbers(List<String> numberList) {
+        int sum = 0;
+        for (String number: numberList) {
+            sum += Integer.parseInt(number);
+        }
         return sum;
     }
+    public static int addEmbeddedNumbers(String numberString) {
+        StringParser stringParserObj = StringParser.getInstance();
+
+        String delimeter = stringParserObj.getDelimeter(numberString);
+        List<String> numberList = stringParserObj.getListOfNumbers(numberString, delimeter);
+        int sum = addNumbers(numberList);
+
+        return sum;
+
+    }
+
 }
