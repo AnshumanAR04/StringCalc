@@ -35,4 +35,10 @@ public class StringCalculatorTest {
         int sum = StringCalculator.addEmbeddedNumbers("15,5\n67,88");
         assertEquals(175, sum);
     }
+    @Test
+    public  void returnSumForMultipleNumbersWithCustomDelimeter() {
+        // Test 6: for string having multiple numbers with custom delimeter the addEmbeddedNumbers method should return the sum
+        int sum = StringCalculator.addEmbeddedNumbers("//;\n1;2");
+        assertEquals(3, sum);
+    }
 }
