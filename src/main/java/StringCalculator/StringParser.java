@@ -33,7 +33,7 @@ public class StringParser {
         //extract the numbers from the String based on delimeter
         String [] numbers = numberString.split(String.valueOf(pattern));
         // delete empty strings from the numbers array
-         numbers = Arrays.stream(numbers)
+        numbers = Arrays.stream(numbers)
                 .filter(value ->
                         value != null && value.length() > 0
                 )

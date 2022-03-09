@@ -73,7 +73,7 @@ public class StringCalculatorTest {
         assertEquals(10, sum);
     }
     @Test
-    public  void returnSumforNewLineAndCustomDelimeter() {
+    public  void returnSumForNewLineAndCustomDelimeter() {
         // Test 7: for string having multiple numbers with custom delimeter and new line the addEmbeddedNumbers method should return the sum
         int sum = 0;
         try {
@@ -85,7 +85,7 @@ public class StringCalculatorTest {
     }
     @Test
     public  void throwExceptionForNegativeNumbers() {
-        // Test 7: for string having multiple numbers with custom delimeter and new line the addEmbeddedNumbers method should return the sum
+        // Test 8: for string having negative numbers the negativeNumberException should be raised
         Exception exception = assertThrows(NegativeNumberException.class, () -> {
             int sum = StringCalculator.add("//;\n1;2;-3\n-4");
         });
