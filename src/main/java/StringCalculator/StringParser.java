@@ -32,6 +32,7 @@ public class StringParser {
         List<String> numberList = new ArrayList<String>();
         //extract the numbers from the String based on delimeter
         String [] numbers = numberString.split(String.valueOf(pattern));
+        // delete empty strings from the numbers array
          numbers = Arrays.stream(numbers)
                 .filter(value ->
                         value != null && value.length() > 0
@@ -56,7 +57,7 @@ public class StringParser {
             try{
                 delimeterSymbol = splittedRows[0].substring(2);
             } catch (Exception e) {
-
+                System.out.println("Substring function for extracting delimeter symbol failed");
             }
             //add option for New Line "\n" to the regular expression
             delimeter = "[" + delimeterSymbol + "\n]";
