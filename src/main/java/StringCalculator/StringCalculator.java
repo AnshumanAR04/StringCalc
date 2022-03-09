@@ -34,6 +34,7 @@ public class StringCalculator {
             sum = addNumbers(numberList);
         }
         catch (NegativeNumberException negativeNumberException) {
+            //propogate the exception
             throw negativeNumberException;
         }
         return sum;
