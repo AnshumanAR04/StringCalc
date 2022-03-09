@@ -22,35 +22,46 @@ public class StringParser {
         return stringParserObj;
     }
     // extracts and returns list of numbers based on the delimeter
-    public List<String> getListOfNumbers() {
-        //get the numberString
-        String numberString = getNumberString();
+    public List<String> getListOfNumbers(String numberString) {
+        //set the numberString
+        setNumberString(numberString);
+        parseDelimeter();
+        numberString = getNumberString();
         //populate the regex pattern for Splitting based on the delimeter
         Pattern pattern = Pattern.compile(this.delimeter);
         List<String> numberList = new ArrayList<String>();
         //extract the numbers from the String based on delimeter
         String [] numbers = numberString.split(String.valueOf(pattern));
+         numbers = Arrays.stream(numbers)
+                .filter(value ->
+                        value != null && value.length() > 0
+                )
+                .toArray(size -> new String[size]);
         //convert the String Array to an ArrayList
         numberList = Arrays.asList(numbers);
         return numberList;
     }
     // extracts and returns the delimeter from the number String
-    public void parseDelimeter(String numberString) {
+    public void parseDelimeter() {
+        String numberString = getNumberString();
         //set default delimeter
         delimeter = "[,\n]";
         //set default number string
         String numberStringUpdate = numberString;
+        String [] splittedRows = numberString.split("\n");
         //if a change delimeter line is given then change the numberString and Delimeter Properties
-        if (isChangeDelimeterPassed(numberString)) {
-            //seperate the delimeter and the number string
-            Matcher customDelimeterMatcher = Pattern.compile("//(.)\n(.*)").matcher(numberString);
-            customDelimeterMatcher.matches();
-            //extract the new delimeter symbol
-            String delimeterSymbol = customDelimeterMatcher.group(1);
+        if (isChangeDelimeterPassed(splittedRows[0])) {
+            //extract new delimeter symbol
+            String delimeterSymbol = "";
+            try{
+                delimeterSymbol = splittedRows[0].substring(2);
+            } catch (Exception e) {
+
+            }
             //add option for New Line "\n" to the regular expression
             delimeter = "[" + delimeterSymbol + "\n]";
-            //update the number string
-            numberStringUpdate = customDelimeterMatcher.group(2);
+            //strip the first row from the numbserstring
+            numberStringUpdate = numberString.substring(splittedRows[0].length());
         }
         //set the global properties for delimeter and number string
         setNumberString(numberStringUpdate);
@@ -74,6 +85,14 @@ public class StringParser {
     }
     //check if a change delimeter line is provided
     public boolean isChangeDelimeterPassed(String numberString) {
-        return changeDelimeterPattern.matcher(numberString).find();
+        boolean delimeterChanged = false;
+        try {
+             delimeterChanged = changeDelimeterPattern.matcher(numberString).find();
+         } catch (Exception e) {
+             delimeterChanged = false;
+             e.printStackTrace();
+             System.out.println("The pattern match for new delimeter failed");
+         }
+        return delimeterChanged;
     }
 }

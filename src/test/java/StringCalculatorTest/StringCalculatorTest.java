@@ -38,7 +38,14 @@ public class StringCalculatorTest {
     @Test
     public  void returnSumForMultipleNumbersWithCustomDelimeter() {
         // Test 6: for string having multiple numbers with custom delimeter the addEmbeddedNumbers method should return the sum
-        int sum = StringCalculator.addEmbeddedNumbers("//;\n1;2");
-        assertEquals(3, sum);
+        int sum = StringCalculator.addEmbeddedNumbers("//;\n1;2;3;4");
+        assertEquals(10, sum);
     }
+    @Test
+    public  void returnSumforNewLineAndCustomDelimeter() {
+        // Test 7: for string having multiple numbers with custom delimeter and new line the addEmbeddedNumbers method should return the sum
+        int sum = StringCalculator.addEmbeddedNumbers("//;\n1;2;3\n4");
+        assertEquals(10, sum);
+    }
+    
 }

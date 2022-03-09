@@ -17,10 +17,8 @@ public class StringCalculator {
             return 0;
         //get instance of parser class
         StringParser stringParserObj = StringParser.getInstance();
-        //Parse the String for the delimeter
-        stringParserObj.parseDelimeter(numberString);
         //get list of numbers from the number string
-        List<String> numberList = stringParserObj.getListOfNumbers();
+        List<String> numberList = stringParserObj.getListOfNumbers(numberString);
         int sum = addNumbers(numberList);
         return sum;
     }
