@@ -27,8 +27,9 @@ public class StringParser {
         setNumberString(numberString);
         parseDelimeter();
         numberString = getNumberString();
+        String delimeter = getDelimeter();
         //populate the regex pattern for Splitting based on the delimeter
-        Pattern pattern = Pattern.compile(this.delimeter);
+        Pattern pattern = Pattern.compile(delimeter);
         List<String> numberList = new ArrayList<String>();
         //extract the numbers from the String based on delimeter
         String [] numbers = numberString.split(String.valueOf(pattern));
