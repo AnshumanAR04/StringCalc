@@ -3,8 +3,12 @@ package StringCalculator;
 import java.util.List;
 
 public class StringCalculator {
+    private StringParser stringParser;
+    public StringCalculator (StringParser stringParser) {
+        this.stringParser = stringParser;
+    }
     // add numbers present in the list
-    public static int addNumbers(List<String> numberList) throws NegativeNumberException {
+    public int addNumbers(List<String> numberList) throws NegativeNumberException {
         int sum = 0;
         String negativNumberString = "";
         for (String number: numberList) {
@@ -22,13 +26,13 @@ public class StringCalculator {
         }
         return sum;
     }
-    public static int add(String numberString) throws NegativeNumberException {
+
+    public int add(String numberString) throws NegativeNumberException {
         if(numberString.length() == 0)
             return 0;
         //get instance of parser class
-        StringParser stringParserObj = StringParser.getInstance();
         //get list of numbers from the number string
-        List<String> numberList = stringParserObj.getListOfNumbers(numberString);
+        List<String> numberList = this.stringParser.getListOfNumbers(numberString);
         int sum = 0;
         try {
             sum = addNumbers(numberList);

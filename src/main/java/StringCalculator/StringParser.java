@@ -7,21 +7,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringParser {
-    // private instance to enable singleton behaviour for the class
-    private static StringParser stringParserObj = new StringParser();
-    // the class has a private constructor so that it cannot be instantiated outside the class
-    private StringParser() {}
+    //constructor of the class
+    public StringParser() {}
     //Pattern to find out if custom delimeter is passed in the string
     private Pattern changeDelimeterPattern = Pattern.compile("^[/][/]*[\n]*");
     //Holds the delimeter in use
     private String delimeter = "";
     //Store the number string
     private String numberString = "";
-    //get instance method to return the static instance of the class
-    public static StringParser getInstance() {
-        return stringParserObj;
-    }
     // extracts and returns list of numbers based on the delimeter
+    public StringParser getInstance() {
+        return new StringParser();
+    }
     public List<String> getListOfNumbers(String numberString) {
         //set the numberString
         setNumberString(numberString);
