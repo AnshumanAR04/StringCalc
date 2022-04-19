@@ -1,33 +1,32 @@
 package StringCalculator;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StringParser {
-    //constructor of the class
-    public StringParser() {}
+    // private instance to enable singleton behaviour for the class
+    // the class has a private constructor so that it cannot be instantiated outside the class
     //Pattern to find out if custom delimeter is passed in the string
-    private Pattern changeDelimeterPattern = Pattern.compile("^[/][/]*[\n]*");
+    private final Pattern changeDelimeterPattern = Pattern.compile("^[/][/]*[\n]*");
     //Holds the delimeter in use
     private String delimeter = "";
     //Store the number string
     private String numberString = "";
+    //get instance method to return the  instance of the class
+
     // extracts and returns list of numbers based on the delimeter
-    public StringParser getInstance() {
-        return new StringParser();
-    }
-    public List<String> getListOfNumbers(String numberString) {
+    public List<String> getListOfNumbers() {
         //set the numberString
-        setNumberString(numberString);
+        if(numberString.length() == 0) {
+            return null;
+        }
         parseDelimeter();
         numberString = getNumberString();
         String delimeter = getDelimeter();
         //populate the regex pattern for Splitting based on the delimeter
         Pattern pattern = Pattern.compile(delimeter);
-        List<String> numberList = new ArrayList<String>();
+        List<String> numberList;
         //extract the numbers from the String based on delimeter
         String [] numbers = numberString.split(String.valueOf(pattern));
         // delete empty strings from the numbers array
@@ -35,7 +34,7 @@ public class StringParser {
                 .filter(value ->
                         value != null && value.length() > 0
                 )
-                .toArray(size -> new String[size]);
+                .toArray(String[]::new);
         //convert the String Array to an ArrayList
         numberList = Arrays.asList(numbers);
         return numberList;
@@ -66,32 +65,34 @@ public class StringParser {
         setNumberString(numberStringUpdate);
         setDelimeter(delimeter);
     }
+    //check if a change delimeter line is provided
+    public boolean isChangeDelimeterPassed(String numberString) {
+        boolean delimeterChanged;
+        try {
+            delimeterChanged = changeDelimeterPattern.matcher(numberString).find();
+        } catch (Exception e) {
+            delimeterChanged = false;
+            e.printStackTrace();
+            System.out.println("The pattern match for new delimeter failed");
+        }
+        return delimeterChanged;
+    }
     //setter for delimeter property
-    private void setDelimeter(String delimeter) {
+    public void setDelimeter(String delimeter) {
         this.delimeter = delimeter;
     }
     //setter for number string property
-    private void setNumberString(String numberString) {
+    public void setNumberString(String numberString) {
+
         this.numberString = numberString;
     }
     //getter for delimeter property
     public String getDelimeter() {
-        return this.delimeter;
+        return delimeter;
     }
     //getter for number string property
     public String getNumberString() {
-        return this.numberString;
+        return numberString;
     }
-    //check if a change delimeter line is provided
-    public boolean isChangeDelimeterPassed(String numberString) {
-        boolean delimeterChanged = false;
-        try {
-             delimeterChanged = changeDelimeterPattern.matcher(numberString).find();
-         } catch (Exception e) {
-             delimeterChanged = false;
-             e.printStackTrace();
-             System.out.println("The pattern match for new delimeter failed");
-         }
-        return delimeterChanged;
-    }
+
 }
