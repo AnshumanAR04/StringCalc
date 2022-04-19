@@ -15,7 +15,6 @@ public class StringParserTest {
         stringParser.setNumberString("");
         List<String> resultList = stringParser.getListOfNumbers();
         assertNull(resultList);
-
     }
     @Test
     public void returnSingleNumber() {
@@ -78,7 +77,6 @@ public class StringParserTest {
         expectedList.add("3");
         expectedList.add("4");
         assertEquals(expectedList,resultList);
-
     }
     @Test
     public  void returnListForNegativeNumbers() {
@@ -92,7 +90,6 @@ public class StringParserTest {
         expectedList.add("-3");
         expectedList.add("-4");
         assertEquals(expectedList,resultList);
-
     }
     @Test
     public void setNumberString() {
@@ -118,13 +115,11 @@ public class StringParserTest {
     public void checkChangeDelimeterRequested() {
         String numberString = "//;\n1;2;-3\n-4";
         assertTrue(stringParser.isChangeDelimeterPassed(numberString));
-
     }
     @Test
     public void checkChangeDelimeterNotRequested() {
         String numberString = "15,2\n11,22";
         assertFalse(stringParser.isChangeDelimeterPassed(numberString));
-
     }
 
 }
